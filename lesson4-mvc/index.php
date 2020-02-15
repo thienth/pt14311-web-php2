@@ -32,10 +32,10 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->detail();
 		break;
-	case 'danh-sach-san-pham':
+	case 'remove-product':
 
 		$ctr = new ProductController();
-		$ctr->list();
+		$ctr->remove();
 		break;
 	
 	default:

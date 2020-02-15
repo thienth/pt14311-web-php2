@@ -32,7 +32,7 @@
                 </td>
 				<td><?php echo $pro->price ?></td>
                 <td>
-                    <a href="<?= BASE_URL . "remove-product.php?id=$pro->id"?>" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                    <a href="<?= BASE_URL . "remove-product?id=$pro->id"?>" class="btn btn-danger btn-sm btn-remove">Xóa</a>
                 </td>
 			</tr>
 		<?php endforeach; ?>
@@ -42,8 +42,22 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<?php if(isset($_GET['msg'])): ?>
+    <input type="hidden" id="msg" value="<?= $_GET['msg']?>">
+<?php endif;?>
 <script>
     $(document).ready(function(){
+        if($('#msg').length > 0){
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: $('#msg').val(),
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+
         $('.btn-remove').click(function(){
             var redirectUrl = $(this).attr('href');
             Swal.fire({
@@ -60,7 +74,9 @@
                 }
             })
             return false;
-        })
+        });
+
+
     });
 </script>
 </body>

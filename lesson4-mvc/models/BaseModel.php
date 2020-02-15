@@ -31,6 +31,22 @@ class BaseModel{
 
         return false;
     }
+
+    public static function destroy($id){
+        try{
+            $model = new static();
+            $sql = "delete from " . $model->table . " where id = $id";
+            $stmt = $model->connect->prepare($sql);
+            $stmt->execute();
+            return true;
+        }catch (Exception $ex){
+            var_dump($ex->getMessage());
+            return false;
+        }
+
+    }
+
+
 }
 
 ?>
