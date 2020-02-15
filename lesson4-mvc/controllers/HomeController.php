@@ -4,8 +4,9 @@ require_once './models/Category.php';
 class HomeController{
 
 	public function index(){
-		// gọi hàm static nên có :: 
+
 		$products = Product::getAll();
+
 		include_once './views/home/index.php';
 	}
 	public function about(){
