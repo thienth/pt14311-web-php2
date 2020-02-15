@@ -1,4 +1,8 @@
-<?php 
+<?php
+session_start();
+
+require_once './commons/helpers.php';
+
 require_once './controllers/HomeController.php';
 require_once './controllers/ProductController.php';
 require_once './controllers/ErrorController.php';
