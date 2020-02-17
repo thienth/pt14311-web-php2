@@ -112,14 +112,27 @@
             rules:{
                 name:{
                     required: true,
-                    rangelength: [4, 10]
+                    rangelength: [4, 100],
+                    remote:
+                        {
+                            url: "<?= BASE_URL .'check-product-name'?>",
+                            type: "post",
+                            data:
+                                {
+                                    name: function()
+                                    {
+                                        return $('#add-product-form :input[name="name"]').val();
+                                    }
+                                }
+                        }
                 }
             },
             // Text của lỗi sẽ hiển thị ra ngoài
             messages: {
                 name:{
                     required: "Hãy nhập tên sản phẩm",
-                    rangelength: "tên sản phẩm nằm trong khoảng 4-10 ký tự"
+                    rangelength: "tên sản phẩm nằm trong khoảng 4-10 ký tự",
+                    remote: "Tên sản phẩm đã tồn tại"
                 }
             }
         });

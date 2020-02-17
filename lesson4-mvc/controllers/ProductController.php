@@ -26,6 +26,14 @@ class ProductController{
 
 	    include_once './views/product/add-form.php';
     }
+
+	public function checkName(){
+	    $name = $_POST['name'];
+        $sql = "select * from " . (new Product())->table . " where name = '$name'";
+        $data = Product::customQuery($sql);
+
+        echo count($data) == 0 ? "true" : "false";
+    }
 }
 
  ?>

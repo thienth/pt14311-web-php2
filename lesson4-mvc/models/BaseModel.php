@@ -19,6 +19,14 @@ class BaseModel{
         return $data;
     }
 
+    public static function customQuery($sql){
+        $model = new static();
+        $stmt = $model->connect->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($model));
+        return $data;
+    }
+
     public static function findOne($id){
         $model = new static();
         $sql = "select * from " . $model->table . " where id = $id";
@@ -43,7 +51,6 @@ class BaseModel{
             var_dump($ex->getMessage());
             return false;
         }
-
     }
 
 

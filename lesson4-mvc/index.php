@@ -36,6 +36,10 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->remove();
 		break;
+	case 'check-product-name':
+		$ctr = new ProductController();
+		$ctr->checkName();
+		break;
 	default:
 		$ctr = new ErrorController();
 		$ctr->notfoundErr();
