@@ -51,12 +51,12 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-8 offset-2">
-                            <img src="<?= BASE_URL . 'public/images/default-image.jpg'?>" class="img-fluid">
+                            <img id="preview-img" src="<?= BASE_URL . 'public/images/default-image.jpg'?>" class="img-fluid">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh đại diện sản phẩm<span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" onchange="encodeImageFileAsURL(this)" class="form-control" name="image">
                     </div>
                     <div class="form-group">
                         <label for="">Thông tin chi tiết</label>
@@ -80,6 +80,15 @@
     <input type="hidden" id="msg" value="<?= $_GET['msg']?>">
 <?php endif;?>
 <script>
+    function encodeImageFileAsURL(element) {
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            $('#preview-img').attr('src', reader.result);
+            // console.log('RESULT', reader.result)
+        }
+        reader.readAsDataURL(file);
+    }
     $(document).ready(function(){
 
     });
