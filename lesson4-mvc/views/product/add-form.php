@@ -10,6 +10,9 @@
             margin-top: 100px;
             margin-bottom: 100px;
         }
+        .form-group label.error{
+            color: indianred;
+        }
     </style>
 </head>
 <body>
@@ -72,25 +75,54 @@
     </div>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
 <?php if(isset($_GET['msg'])): ?>
     <input type="hidden" id="msg" value="<?= $_GET['msg']?>">
 <?php endif;?>
 <script>
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
-        var reader = new FileReader();
-        reader.onloadend = function() {
-            $('#preview-img').attr('src', reader.result);
-            // console.log('RESULT', reader.result)
+        if(file === undefined){
+            $('#preview-img').attr('src', "<?= BASE_URL . 'public/images/default-image.jpg'?>");
+        }else{
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                $('#preview-img').attr('src', reader.result);
+                // console.log('RESULT', reader.result)
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
     }
     $(document).ready(function(){
 
+        /**
+         * name: bắt buộc nhập, tối thiểu 4 ký tự
+         * price: bắt buộc nhập, giá trị nhỏ nhất = 1
+         * lượt xem: không bắt buộc nhập, nếu nhập thì phải là số, và không âm
+         * đánh giá: không bắt buộc nhập, nếu nhập thì phải là số, và không âm
+         * ảnh đại diện: bắt buộc, phải có đuôi là định dạng ảnh (jpg, png, jpeg, gif)
+         */
+        $('#add-product-form').validate({
+            // quy định bắt lỗi (nếu vi phạm thì hiển thị lỗi)
+            rules:{
+                name:{
+                    required: true,
+                    rangelength: [4, 10]
+                }
+            },
+            // Text của lỗi sẽ hiển thị ra ngoài
+            messages: {
+                name:{
+                    required: "Hãy nhập tên sản phẩm",
+                    rangelength: "tên sản phẩm nằm trong khoảng 4-10 ký tự"
+                }
+            }
+        });
     });
 </script>
 </body>
