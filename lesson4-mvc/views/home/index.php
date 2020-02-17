@@ -50,7 +50,7 @@
         if($('#msg').length > 0){
 
             Swal.fire({
-                position: 'top-end',
+                position: 'bottom-end',
                 icon: 'info',
                 title: $('#msg').val(),
                 showConfirmButton: false,
