@@ -21,6 +21,11 @@ class ProductController{
 	public function detail(){
 		echo "Hiển thị trang chi tiết sản phẩm";
 	}
+
+	public function addForm(){
+
+	    include_once './views/product/add-form.php';
+    }
 }
 
  ?>

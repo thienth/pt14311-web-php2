@@ -13,33 +13,30 @@ $url = isset($_GET['url']) == true ? $_GET['url'] : "/";
 
 switch ($url) {
 	case '/':
-
 		$ctr = new HomeController();
 		$ctr->index();
 		break;
 	case 'gioi-thieu':
-
 		$ctr = new HomeController();
 		$ctr->about();
 		break;
 	case 'lien-he':
-
 		$ctr = new HomeController();
 		$ctr->contact();
 		break;
 	case 'chi-tiet-san-pham':
-
 		$ctr = new ProductController();
 		$ctr->detail();
 		break;
+	case 'add-product':
+		$ctr = new ProductController();
+		$ctr->addForm();
+		break;
 	case 'remove-product':
-
 		$ctr = new ProductController();
 		$ctr->remove();
 		break;
-	
 	default:
-
 		$ctr = new ErrorController();
 		$ctr->notfoundErr();
 		break;
