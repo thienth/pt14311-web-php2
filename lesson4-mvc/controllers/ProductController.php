@@ -30,10 +30,11 @@ class ProductController{
     }
 
 	public function saveAdd(){
-        // danh sách của Danh mục
-        $requestData = $_POST;
-        $file = $_FILES['image'];
         $model = new Product();
+        $requestData = $_POST;
+
+        $model->image = img_upload($_FILES['image']);
+
         $model->fill($requestData);
         $msg = $model->insert() == true ? "Tạo tài khoản thành công!" : "Tạo tài khoản thất bại!";
         header('location: ' . BASE_URL . "?msg=$msg");

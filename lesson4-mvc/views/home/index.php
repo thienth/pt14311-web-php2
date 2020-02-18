@@ -12,6 +12,7 @@
 	<thead>
 		<th>ID</th>
 		<th>Name</th>
+		<th width="100">Image</th>
 		<th>Category</th>
 		<th>Price</th>
         <th>
@@ -23,6 +24,9 @@
 			<tr>
 				<td><?php echo $pro->id ?></td>
 				<td><?php echo $pro->name ?></td>
+				<td>
+                    <img src="<?= BASE_URL . $pro->image ?>" class="img-thumbnail">
+                </td>
 				<td>
                     <?php
                         $parent = $pro->getCategory();
