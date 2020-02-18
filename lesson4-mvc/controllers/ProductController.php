@@ -1,5 +1,6 @@
 <?php
 require_once './models/Product.php';
+require_once './models/Category.php';
 class ProductController{
 
 	public function remove(){
@@ -23,15 +24,26 @@ class ProductController{
 	}
 
 	public function addForm(){
-
+        // danh sách của Danh mục
+        $cates = Category::getAll();
 	    include_once './views/product/add-form.php';
+    }
+
+	public function saveAdd(){
+        // danh sách của Danh mục
+        $requestData = $_POST;
+        $file = $_FILES['image'];
+        $model = new Product();
+        $model->fill($requestData);
+        $msg = $model->insert() == true ? "Tạo tài khoản thành công!" : "Tạo tài khoản thất bại!";
+        header('location: ' . BASE_URL . "?msg=$msg");
+        die;
     }
 
 	public function checkName(){
 	    $name = $_POST['name'];
         $sql = "select * from " . (new Product())->table . " where name = '$name'";
         $data = Product::customQuery($sql);
-
         echo count($data) == 0 ? "true" : "false";
     }
 }

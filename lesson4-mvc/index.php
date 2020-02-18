@@ -32,6 +32,10 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->addForm();
 		break;
+	case 'save-add-product':
+		$ctr = new ProductController();
+		$ctr->saveAdd();
+		break;
 	case 'remove-product':
 		$ctr = new ProductController();
 		$ctr->remove();

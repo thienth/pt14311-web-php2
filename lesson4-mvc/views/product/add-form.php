@@ -30,8 +30,9 @@
                     <div class="form-group">
                         <label for="">Danh mục sản phẩm</label>
                         <select name="cate_id" class="form-control">
-                            <option value="1">Danh mục 1</option>
-                            <option value="1">Danh mục 2</option>
+                            <?php foreach ($cates as $ca):?>
+                            <option value="<?= $ca->id?>"><?= $ca->cate_name?></option>
+                            <?php endforeach;?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -113,18 +114,16 @@
                 name:{
                     required: true,
                     rangelength: [4, 100],
-                    remote:
-                        {
-                            url: "<?= BASE_URL .'check-product-name'?>",
-                            type: "post",
-                            data:
-                                {
-                                    name: function()
-                                    {
-                                        return $('#add-product-form :input[name="name"]').val();
-                                    }
-                                }
+                    remote: {
+                        url: "<?= BASE_URL .'check-product-name'?>",
+                        type: "post",
+                        data: {
+                            name: function()
+                            {
+                                return $('#add-product-form :input[name="name"]').val();
+                            }
                         }
+                    }
                 }
             },
             // Text của lỗi sẽ hiển thị ra ngoài
