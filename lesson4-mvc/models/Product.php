@@ -1,6 +1,6 @@
 <?php
-require_once "./models/BaseModel.php";
-require_once "./models/Category.php";
+namespace Models;
+use Exception;
 class Product extends BaseModel{
     public $table = "products";
 

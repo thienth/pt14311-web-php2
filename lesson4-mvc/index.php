@@ -3,10 +3,18 @@ session_start();
 
 require_once './commons/helpers.php';
 
+
+require_once './models/BaseModel.php';
+require_once './models/Category.php';
+require_once './models/Product.php';
+
 require_once './controllers/HomeController.php';
 require_once './controllers/ProductController.php';
 require_once './controllers/ErrorController.php';
 
+use Controllers\HomeController;
+use Controllers\ProductController;
+use Controllers\ErrorController;
 
 $url = isset($_GET['url']) == true ? $_GET['url'] : "/";
 

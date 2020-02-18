@@ -1,6 +1,6 @@
 <?php 
-require_once './models/Product.php';
-require_once './models/Category.php';
+namespace Controllers;
+use Models\Product;
 class HomeController{
 
 	public function index(){

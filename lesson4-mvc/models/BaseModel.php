@@ -1,4 +1,7 @@
 <?php
+namespace Models;
+use PDO;
+use Exception;
 class BaseModel{
     function __construct()
     {

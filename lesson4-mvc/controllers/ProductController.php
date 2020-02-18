@@ -1,6 +1,7 @@
 <?php
-require_once './models/Product.php';
-require_once './models/Category.php';
+namespace Controllers;
+use Models\Product;
+use Models\Category;
 class ProductController{
 
 	public function remove(){
