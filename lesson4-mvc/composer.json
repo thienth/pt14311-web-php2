@@ -15,6 +15,7 @@
     "autoload": {
         "psr-4": {
             "Models\\": "models/",
+            "Commons\\": "commons/",
             "Controllers\\": "controllers/"
         }
     }
