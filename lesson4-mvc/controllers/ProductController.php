@@ -4,15 +4,14 @@ use Models\Product;
 use Models\Category;
 class ProductController{
 
-	public function remove(){
+	public function remove($id){
 		//1. Lấy id từ url
-        $proid = isset($_GET['id']) ? $_GET['id'] : -1;
-        if($proid <= 0){
+        if(!$id){
             header("location: " . BASE_URL . "?msg=Sai thông tin mã sản phẩm");
             die;
         }
         //2. Thực hiện xóa khỏi csdl
-        if(Product::destroy($proid)) {
+        if(Product::destroy($id)) {
             header("location: " . BASE_URL . "?msg=Xóa sản phẩm thành công");
             die;
         }

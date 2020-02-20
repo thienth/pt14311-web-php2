@@ -16,7 +16,7 @@
 		<th>Category</th>
 		<th>Price</th>
         <th>
-            <a href="<?= BASE_URL . 'add-product'?>" class="btn btn-sm btn-success">Thêm</a>
+            <a href="<?= BASE_URL . 'products/add-product'?>" class="btn btn-sm btn-success">Thêm</a>
         </th>
 	</thead>
 	<tbody>
@@ -36,7 +36,8 @@
                 </td>
 				<td><?php echo $pro->price ?></td>
                 <td>
-                    <a href="<?= BASE_URL . "remove-product?id=$pro->id"?>" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                    <a href="<?= BASE_URL . "products/edit-product/$pro->id"?>" class="btn btn-primary btn-sm ">Sửa</a>&nbsp;
+                    <a href="<?= BASE_URL . "products/remove-product/$pro->id"?>" class="btn btn-danger btn-sm btn-remove">Xóa</a>
                 </td>
 			</tr>
 		<?php endforeach; ?>
