@@ -1,13 +1,13 @@
 <?php 
 namespace Controllers;
 use Models\Product;
-class HomeController{
+class HomeController extends BaseController {
 
 	public function index(){
 
 		$products = Product::getAll();
 
-		include_once './views/home/index.php';
+		$this->render('home.index', ['products' => $products]);
 	}
 	public function about(){
 		echo "Hiển thị Giới Thiệu";

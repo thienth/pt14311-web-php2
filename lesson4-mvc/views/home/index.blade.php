@@ -16,40 +16,41 @@
 		<th>Category</th>
 		<th>Price</th>
         <th>
-            <a href="<?= BASE_URL . 'products/add-product'?>" class="btn btn-sm btn-success">Thêm</a>
+            <a href="{{BASE_URL . 'products/add-product'}}" class="btn btn-sm btn-success">Thêm</a>
         </th>
 	</thead>
 	<tbody>
-		<?php foreach($products as $pro): ?>
+		@foreach($products as $pro)
 			<tr>
-				<td><?php echo $pro->id ?></td>
-				<td><?php echo $pro->name ?></td>
+				<td>{{$pro->id}}</td>
+				<td>{{$pro->name}}</td>
 				<td>
-                    <img src="<?= BASE_URL . $pro->image ?>" class="img-thumbnail">
+                    <img src="{{BASE_URL . $pro->image}}" class="img-thumbnail">
                 </td>
 				<td>
-                    <?php
+                    @php
                         $parent = $pro->getCategory();
-                    if($parent !== false): ?>
+					@endphp
+                    @if($parent !== false)
                         <?= $parent->cate_name; ?>
-                    <?php endif;?>
+                    @endif
                 </td>
-				<td><?php echo $pro->price ?></td>
+				<td>{{$pro->price}}</td>
                 <td>
-                    <a href="<?= BASE_URL . "products/edit-product/$pro->id"?>" class="btn btn-primary btn-sm ">Sửa</a>&nbsp;
-                    <a href="<?= BASE_URL . "products/remove-product/$pro->id"?>" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                    <a href="{{BASE_URL . "products/edit-product/$pro->id"}}" class="btn btn-primary btn-sm ">Sửa</a>&nbsp;
+                    <a href="{{BASE_URL . "products/remove-product/$pro->id"}}" class="btn btn-danger btn-sm btn-remove">Xóa</a>
                 </td>
 			</tr>
-		<?php endforeach; ?>
+		@endforeach
 	</tbody>
 </table>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<?php if(isset($_GET['msg'])): ?>
-    <input type="hidden" id="msg" value="<?= $_GET['msg']?>">
-<?php endif;?>
+@if(isset($_GET['msg']))
+    <input type="hidden" id="msg" value="{{$_GET['msg']}}">
+@endif
 <script>
     $(document).ready(function(){
         if($('#msg').length > 0){
