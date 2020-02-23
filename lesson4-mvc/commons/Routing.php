@@ -15,6 +15,9 @@ class Routing
             $router->post('save-add-product', ['Controllers\ProductController', 'saveAdd']);
             $router->post('check-product-name', ['Controllers\ProductController', 'checkName']);
         });
+        $router->group(['prefix' => 'users'], function($router){
+            $router->get('/', ['Controllers\UserController', 'index']);
+        });
 
 
         $router->group(['prefix' => 'admin'], function($router){
