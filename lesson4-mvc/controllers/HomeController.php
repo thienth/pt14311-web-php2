@@ -7,8 +7,8 @@ class HomeController extends BaseController {
 //        dd(1);
 		$products = Product::getAll();
 
-//		$this->render('home.index', ['products' => $products]);
-        $this->render('home.list-product', ['products' => $products]);
+		$this->render('layouts.admin');
+//        $this->render('home.list-product', ['products' => $products]);
 	}
 	public function about(){
 		echo "Hiển thị Giới Thiệu";

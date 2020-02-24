@@ -3,3 +3,4 @@
 *.iml
 vendor/
 storage/
+public/admin/
