@@ -6,9 +6,11 @@ class Routing
 {
     public static function customRouting($url){
 
+
         $router = new RouteCollector();
 
         $router->get('/', ['Controllers\HomeController', 'index']);
+
         $router->group(['prefix' => 'products'], function($router){
             $router->get('add-product', ['Controllers\ProductController', 'addForm']);
             $router->get('remove-product/{id:i}', ['Controllers\ProductController', 'remove']);

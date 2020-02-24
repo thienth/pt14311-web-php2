@@ -4,10 +4,11 @@ use Models\Product;
 class HomeController extends BaseController {
 
 	public function index(){
-
+//        dd(1);
 		$products = Product::getAll();
 
-		$this->render('home.index', ['products' => $products]);
+//		$this->render('home.index', ['products' => $products]);
+        $this->render('home.list-product', ['products' => $products]);
 	}
 	public function about(){
 		echo "Hiển thị Giới Thiệu";

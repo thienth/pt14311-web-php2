@@ -11,7 +11,7 @@ namespace Controllers;
 use Jenssegers\Blade\Blade;
 class BaseController
 {
-    public function render($view, $dataArr){
+    public function render($view, $dataArr = []){
         $blade = new Blade('views', 'storage');
 
         echo $blade->make($view, $dataArr)->render();
