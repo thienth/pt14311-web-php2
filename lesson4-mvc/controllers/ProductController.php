@@ -14,7 +14,7 @@ class ProductController extends BaseController {
 	public function remove($id){
 		//1. Lấy id từ url
         if(!$id){
-            header("location: " . BASE_URL . "?msg=Sai thông tin mã sản phẩm");
+            header("location: " . BASE_URL . "products?msg=Sai thông tin mã sản phẩm");
             die;
         }
         //2. Thực hiện xóa khỏi csdl
@@ -23,14 +23,15 @@ class ProductController extends BaseController {
             die;
         }
         //3. điều hướng website về trang danh sách để ktra kết quả
-        header("location: " . BASE_URL . "?msg=Xóa không thành công");
+        header("location: " . BASE_URL . "products?msg=Xóa không thành công");
         die;
 	}
 
 	public function addForm(){
         // danh sách của Danh mục
         $cates = Category::getAll();
-	    include_once './views/product/add-form.php';
+//	    include_once './views/product/add-form.php';
+        $this->render('product.add-form', compact('cates'));
     }
 
 	public function saveAdd(){
@@ -41,7 +42,7 @@ class ProductController extends BaseController {
 
         $model->fill($requestData);
         $msg = $model->insert() == true ? "Tạo tài khoản thành công!" : "Tạo tài khoản thất bại!";
-        header('location: ' . BASE_URL . "?msg=$msg");
+        header('location: ' . BASE_URL . "products?msg=$msg");
         die;
     }
 

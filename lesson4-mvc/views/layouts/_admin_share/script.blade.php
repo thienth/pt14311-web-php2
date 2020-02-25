@@ -26,6 +26,9 @@
 <script src="{{ADMIN_ASSET_URL}}plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="{{ADMIN_ASSET_URL}}plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ADMIN_ASSET_URL}}dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
