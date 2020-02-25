@@ -2,7 +2,14 @@
 namespace Controllers;
 use Models\Product;
 use Models\Category;
-class ProductController{
+class ProductController extends BaseController {
+
+    public function index(){
+
+        $products = Product::getAll();
+
+        $this->render('product.index', compact('products'));
+    }
 
 	public function remove($id){
 		//1. Lấy id từ url
@@ -18,9 +25,6 @@ class ProductController{
         //3. điều hướng website về trang danh sách để ktra kết quả
         header("location: " . BASE_URL . "?msg=Xóa không thành công");
         die;
-	}
-	public function detail(){
-		echo "Hiển thị trang chi tiết sản phẩm";
 	}
 
 	public function addForm(){

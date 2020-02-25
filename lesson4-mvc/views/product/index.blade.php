@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', "FPT Polytechnic - Homepage")
+@section('title', "Danh sách sản phẩm")
 @section('content')
     <table class="table table-stripped">
         <thead>

@@ -12,6 +12,8 @@ class Routing
         $router->get('/', ['Controllers\HomeController', 'index']);
 
         $router->group(['prefix' => 'products'], function($router){
+
+            $router->get('', ['Controllers\ProductController', 'index']);
             $router->get('add-product', ['Controllers\ProductController', 'addForm']);
             $router->get('remove-product/{id:i}', ['Controllers\ProductController', 'remove']);
             $router->post('save-add-product', ['Controllers\ProductController', 'saveAdd']);
