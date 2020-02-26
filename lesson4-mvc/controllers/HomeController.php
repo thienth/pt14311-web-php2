@@ -5,7 +5,7 @@ class HomeController extends BaseController {
 
 	public function index(){
 //        dd(1);
-		$products = Product::getAll();
+//		$products = Product::getAll();
 
 		$this->render('layouts.admin');
 //        $this->render('home.list-product', ['products' => $products]);
