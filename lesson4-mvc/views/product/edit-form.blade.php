@@ -11,43 +11,50 @@
     </style>
 
 
-    <form id="add-product-form" action="{{BASE_URL . 'products/save-add-product'}}" method="post" enctype="multipart/form-data">
+    <form id="edit-product-form" action="{{BASE_URL . 'products/save-edit-product'}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{$model->id}}">
         <h3>Thêm mới sản phẩm</h3>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Tên sản phẩm<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control"
+                           value="{{$model->name}}"
+                           name="name">
                 </div>
                 <div class="form-group">
                     <label for="">Danh mục sản phẩm</label>
                     <select name="cate_id" class="form-control">
                         @foreach ($cates as $ca)
-                        <option value="{{$ca->id}}">{{$ca->cate_name}}</option>
+                        <option
+                                @if($ca->id == $model->cate_id)
+                                    selected
+                                @endif
+                                value="{{$ca->id}}">{{$ca->cate_name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="">Giá sản phẩm<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="price">
+                    <input type="number" class="form-control" value="{{$model->price}}" name="price">
                 </div>
                 <div class="form-group">
                     <label for="">Lượt xem</label>
-                    <input type="number" class="form-control" name="views">
+                    <input type="number" class="form-control" value="{{$model->views}}" name="views">
                 </div>
                 <div class="form-group">
                     <label for="">Đánh giá</label>
-                    <input type="number" class="form-control" name="star">
+                    <input type="number" class="form-control" value="{{$model->star}}" name="star">
                 </div>
                 <div class="form-group">
                     <label for="">Mô tả ngắn</label>
-                    <textarea name="short_desc" class="form-control" rows="5"></textarea>
+                    <textarea name="short_desc" class="form-control" rows="5">{{$model->short_desc}}</textarea>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-8 offset-2">
-                        <img id="preview-img" src="{{BASE_URL . 'public/images/default-image.jpg'}}" class="img-fluid">
+                        <img id="preview-img" src="{{BASE_URL . $model->image}}" class="img-fluid">
                     </div>
                 </div>
                 <div class="form-group">
@@ -56,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Thông tin chi tiết</label>
-                    <textarea name="detail" class="form-control" rows="9"></textarea>
+                    <textarea name="detail" class="form-control" rows="9">{{$model->detail}}</textarea>
                 </div>
             </div>
             <div class="col-12 d-flex justify-content-end">
@@ -75,7 +82,7 @@
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
         if(file === undefined){
-            $('#preview-img').attr('src', "{{BASE_URL . 'public/images/default-image.jpg'}}");
+            $('#preview-img').attr('src', "{{BASE_URL . $model->image}}");
         }else{
             var reader = new FileReader();
             reader.onloadend = function() {
@@ -94,7 +101,7 @@
          * đánh giá: không bắt buộc nhập, nếu nhập thì phải là số, và không âm
          * ảnh đại diện: bắt buộc, phải có đuôi là định dạng ảnh (jpg, png, jpeg, gif)
          */
-        $('#add-product-form').validate({
+        $('#edit-product-form').validate({
             // quy định bắt lỗi (nếu vi phạm thì hiển thị lỗi)
             rules:{
                 name:{
@@ -106,7 +113,10 @@
                         data: {
                             name: function()
                             {
-                                return $('#add-product-form :input[name="name"]').val();
+                                return $('#edit-product-form :input[name="name"]').val();
+                            },
+                            id: function () {
+                                return $('#edit-product-form :input[name="id"]').val();
                             }
                         }
                     }
