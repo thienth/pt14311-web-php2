@@ -1,0 +1,23 @@
+{
+    "name": "ginv2/lesson4-mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "thienth32",
+            "email": "thienth32@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "~6.1",
+        "phroute/phroute": "^2.1",
+        "jenssegers/blade": "^1.2",
+        "illuminate/database": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Models\\": "models/",
+            "Commons\\": "commons/",
+            "Controllers\\": "controllers/"
+        }
+    }
+}
